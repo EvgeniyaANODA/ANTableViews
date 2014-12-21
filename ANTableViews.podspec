@@ -15,4 +15,5 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
 
   spec.dependency 'ANCategories', '~> 1.0'
+  spec.dependency 'ANHelperFunctions', '~> 1.0'
 end
