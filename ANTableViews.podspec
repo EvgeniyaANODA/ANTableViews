@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage = 'https://github.com/anodamobi/ANTableViews'
   spec.authors  = { 'Oksana Kovalchuk' => 'oksana@anoda.mobi' }
   spec.summary  = 'Base classes for UITableView and related views'
-  spec.source   = { :git => 'https://github.com/anodamobi/ANTableViews.git', :tag => '1.0' }
+  spec.source   = { :git => 'https://github.com/anodamobi/ANTableViews.git', :tag => '1.0.2' }
 
   spec.source_files = "Reusable/*.{h,m}", "TableView/*.{h,m}"
 
