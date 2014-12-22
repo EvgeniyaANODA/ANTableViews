@@ -6,6 +6,8 @@
 //
 
 #import "ANTableView.h"
+#import "ANDefines.h"
+#import "UIColor+ANAdditions.h"
 
 static CGFloat const kDefaultTableViewCellHeight = 44;
 static CGFloat const kDefaultTableViewHeaderHeight = 40;
