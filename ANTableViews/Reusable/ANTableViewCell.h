@@ -1,15 +1,14 @@
 //
-//  ANTableViewController.h
+//  ANTableViewCell.h
 //
-//  Created by Oksana Kovalchuk on 29/10/14.
+//  Created by Oksana Kovalchuk on 4/11/14.
 //  Copyright (c) 2014 ANODA. All rights reserved.
 //
 
-#import "ANModelTransfer.h"
+#import "ANBaseTableViewCell.h"
 
-@interface ANTableViewCell : UITableViewCell <ANModelTransfer>
+static NSString* kANCellSelectionColor;
 
-@property (nonatomic, assign) BOOL isTransparent;
-@property (nonatomic, strong) UIColor* selectionColor;
+@interface ANTableViewCell : ANBaseTableViewCell
 
 @end

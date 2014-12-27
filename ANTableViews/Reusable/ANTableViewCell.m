@@ -1,49 +1,37 @@
 //
-//  ANTableViewController.h
+//  ANTableViewCell.m
 //
-//  Created by Oksana Kovalchuk on 29/10/14.
+//  Created by Oksana Kovalchuk on 4/11/14.
 //  Copyright (c) 2014 ANODA. All rights reserved.
 //
 
 #import "ANTableViewCell.h"
-#import "ANRuntimeHelper.h"
+#import "UIColor+ANAdditions.h"
 
 @implementation ANTableViewCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self)
+    {
+        /*
+         self.contentView.backgroundColor = [UIColor whiteColor];
+         SETTING background color for cell will overlaps table cell separator,
+         if you need to set color - do it for cell self.backgroundColor = [UIColor redColor];
+         */
+
+        self.selectionColor = [UIColor an_colorWithHexString:kANCellSelectionColor];
+    }
+    return self;
+}
+
 - (void)updateWithModel:(id)model
 {
-    NSString * reason = [NSString stringWithFormat:@"cell %@ should implement %@: method\n",
-                         NSStringFromClass([self class]), NSStringFromSelector(_cmd)];
-    NSException * exc =
-    [NSException exceptionWithName:@"ANTableViewController API exception"
-                            reason:reason
-                          userInfo:nil];
-    [exc raise];
-}
-
-- (id)model
-{
-    return nil;
-}
-
-- (void)setIsTransparent:(BOOL)isTransparent
-{
-    if (isTransparent)
+    if ([model isKindOfClass:[NSString class]])
     {
-        self.contentView.backgroundColor = [UIColor clearColor];
-        self.backgroundColor = [UIColor clearColor];
-        self.backgroundView = [UIView new];
+        self.textLabel.text = model;
     }
-    _isTransparent = isTransparent;
-}
-
-- (void)setSelectionColor:(UIColor *)selectionColor
-{
-    _selectionColor = selectionColor;
-    UIView* selection = [UIView new];
-    selection.backgroundColor = selectionColor;
-    self.selectedBackgroundView = selection;
-    self.selectionStyle = UITableViewCellSelectionStyleDefault;
 }
 
 @end
