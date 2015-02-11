@@ -7,8 +7,8 @@
 
 #import "ANBaseTableViewCell.h"
 
-static NSString* kANCellSelectionColor;
-
 @interface ANTableViewCell : ANBaseTableViewCell
+
++ (void)updateDefaultSelectionColor:(UIColor*)color;
 
 @end

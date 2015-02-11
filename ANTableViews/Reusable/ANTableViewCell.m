@@ -6,7 +6,8 @@
 //
 
 #import "ANTableViewCell.h"
-#import "UIColor+ANAdditions.h"
+
+static UIColor* kANCellSelectionColor = nil;
 
 @implementation ANTableViewCell
 
@@ -21,9 +22,17 @@
          if you need to set color - do it for cell self.backgroundColor = [UIColor redColor];
          */
 
-        self.selectionColor = [UIColor an_colorWithHexString:kANCellSelectionColor];
+        if (kANCellSelectionColor)
+        {
+            self.selectionColor = kANCellSelectionColor;
+        }
     }
     return self;
+}
+
++ (void)updateDefaultSelectionColor:(UIColor *)color
+{
+    kANCellSelectionColor = color;
 }
 
 - (void)updateWithModel:(id)model
