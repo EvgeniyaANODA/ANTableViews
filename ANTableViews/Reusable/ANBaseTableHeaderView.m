@@ -8,6 +8,9 @@
 #import "ANBaseTableHeaderView.h"
 #import "UIColor+ANAdditions.h"
 #import "UIFont+ANAdditions.h"
+#import "UILabel+ANAdditions.h"
+
+static CGFloat const kANLabelSmallOffset = 10.0f;
 
 @interface ANBaseTableHeaderView ()
 
@@ -21,7 +24,6 @@
     if (self)
     {
         self.yLabelOffset = 15;
-        self.contentView.backgroundColor = [SMColorTheme shared].baseBackgroundColor;
     }
     return self;
 }
@@ -32,9 +34,9 @@
     
     CGSize size = self.bounds.size;
     
-    CGFloat height = [self.titleLabel sm_textContentSizeConstrainedToWidth:size.width].height;
-    CGFloat yOffset = size.height - kSmallOffset - height + 5.0f;
-    self.titleLabel.frame = CGRectMake(self.yLabelOffset, yOffset, size.width - kSmallOffset * 2.0f, height);
+    CGFloat height = [self.titleLabel an_textContentSizeConstrainedToWidth:size.width].height;
+    CGFloat yOffset = size.height - kANLabelSmallOffset - height + 5.0f;
+    self.titleLabel.frame = CGRectMake(self.yLabelOffset, yOffset, size.width - kANLabelSmallOffset * 2.0f, height);
 }
 
 - (void)updateWithModel:(NSString*)model
