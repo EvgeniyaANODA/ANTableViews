@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name     = 'ANTableViews'
-  spec.version  = '1.0.9'
+  spec.version  = '1.0.10'
   spec.license  = { :type => 'MIT' }
   spec.homepage = 'https://github.com/anodamobi/ANTableViews'
   spec.authors  = { 'Oksana Kovalchuk' => 'oksana@anoda.mobi' }

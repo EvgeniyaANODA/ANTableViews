@@ -12,6 +12,10 @@
 static CGFloat const kDefaultTableViewCellHeight = 44;
 static CGFloat const kDefaultTableViewHeaderHeight = 40;
 
+@interface ANTableView ()
+
+@end
+
 @implementation ANTableView
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
@@ -27,6 +31,50 @@ static CGFloat const kDefaultTableViewHeaderHeight = 40;
         [self setupAppearance];
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self layoutTableFooterView];
+}
+
+//thanks to Dmitry Nesterenko
+- (void)layoutTableFooterView
+{
+    if (self.bottomStickedFooterView == nil)
+        return;
+    
+    __block CGFloat footerContentMinY, footerContentMaxY;
+    [self.tableFooterView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        CGRect frame = [obj frame];
+        if (idx == 0)
+        {
+            footerContentMinY = CGRectGetMinY(frame);
+            footerContentMaxY = CGRectGetMaxY(frame);
+        }
+        else {
+            footerContentMinY = MIN(CGRectGetMinY(frame), footerContentMinY);
+            footerContentMaxY = MAX(CGRectGetMaxY(frame), footerContentMaxY);
+        }
+    }];
+    
+    // frame
+    CGFloat height = MAX(MAX(self.contentSize.height,
+                             self.frame.size.height) - self.tableFooterView.frame.origin.y,
+                         footerContentMaxY - footerContentMinY + 10.0);
+    
+    self.tableFooterView.frame = CGRectMake(0,
+                                            self.tableFooterView.frame.origin.y,
+                                            self.frame.size.width,
+                                            height);
+}
+
+- (void)setBottomStickedFooterView:(UIView *)bottomStickedFooterView
+{
+    _bottomStickedFooterView = bottomStickedFooterView;
+    self.tableFooterView = bottomStickedFooterView;
 }
 
 - (void)setupAppearance
